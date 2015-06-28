@@ -1,0 +1,15 @@
+subprojects {
+    apply plugin: 'java'
+    sourceCompatibility = 1.5
+    version = '1.0'
+
+    repositories {
+        mavenCentral()
+    }
+
+    jar {
+        manifest {
+            attributes 'Main-Class': 'io.github.halfo.Server'
+        }
+    }
+}
