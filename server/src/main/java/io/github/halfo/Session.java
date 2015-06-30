@@ -50,6 +50,8 @@ class Session extends Thread {
     }
 
     private void sendMessage(String receiver, String message) {
+        if (receiver.equals(sender)) return;
+
         if (receiver.equals("ALL")) {
             Set<String> availableUsers = socketList.getAvailableUsers();
             message = encode("ALL", message);
@@ -61,9 +63,13 @@ class Session extends Thread {
             message = encode("You", message);
             sendMessage(socketList.getSocket(receiver), message);
         } else {
-            message = encode("SERVER", "Unavailable user");
-            sendMessage(socketList.getSocket(sender), message);
+            Set<String> availableUsers = socketList.getAvailableUsers();
+            sendMessage(socketList.getSocket(sender), genErrorMessage("Something went wrong..."));
         }
+    }
+
+    private String genErrorMessage(String errorMessage) {
+        return "Server >> you :: " + errorMessage;
     }
 
     // unicast   format = "sender >> you :: message"
