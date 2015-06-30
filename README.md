@@ -4,6 +4,8 @@ This is a simple chat messenger that supports,
 - Unicast (send message to a specific user)
 - Bradcast (send message to every available user)
 
+(Netbeans form designer is used to design the gui's, yikes!!)
+
 ## Project Structure
 
 General gradle project structure is followed. Check [this](http://gradle.org/docs/current/userguide/multi_project_builds.html) for more information.
