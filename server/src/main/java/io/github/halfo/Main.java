@@ -9,7 +9,6 @@ public class Main {
         try {
             Server server = new Server(8000);
         } catch (IOException e) {
-            System.out.println("hi");
         }
     }
 }

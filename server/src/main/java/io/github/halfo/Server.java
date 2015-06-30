@@ -60,7 +60,7 @@ class Server {
 
     class SessionKiller implements Killer {
         @Override
-        public void kill(Session session) {
+        public synchronized void kill(Session session) {
             String username = session.getSender();
             socketList.removeSocket(username);
 

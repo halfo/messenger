@@ -17,7 +17,7 @@ class Validator {
         populateDB();
     }
     
-    public synchronized Validator getInstance() throws IOException {
+    public Validator getInstance() throws IOException {
         if (instance == null) {
             instance = new Validator();        
         }

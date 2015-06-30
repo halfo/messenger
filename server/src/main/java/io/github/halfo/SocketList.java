@@ -10,27 +10,23 @@ class SocketList {
     private Map<String, Socket> mappedSockets;
 
     protected SocketList() {
-        mappedSockets = new HashMap<>();
+        mappedSockets = new HashMap();
     }
     
     public SocketList getInstance() {
         return instance;
     }
 
-    public void storeSocket(String username, Socket socket) {
-        synchronized(mappedSockets) {            
-            mappedSockets.put(username, socket);
-        }
+    public synchronized void storeSocket(String username, Socket socket) {
+        mappedSockets.put(username, socket);
     }
 
     public Socket getSocket(String username) {
         return mappedSockets.get(username);
     }
 
-    public void removeSocket(String username) {
-        synchronized(mappedSockets) {
-            mappedSockets.remove(username);
-        }
+    public synchronized void removeSocket(String username) {
+        mappedSockets.remove(username);
     }
 
     public boolean isUserOnline(String username){
