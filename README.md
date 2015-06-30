@@ -1,6 +1,8 @@
 # Messenger
 
-This is a simple chatting system that allows multiple clients to chat among themselves. Clients can send message to a particular client (unicast) or to all clients (broadcast) that are connected to the server.
+This is a simple chat messenger that supports,
+- Unicast (send message to a specific user)
+- Bradcast (send message to every available user)
 
 ## Project Structure
 
