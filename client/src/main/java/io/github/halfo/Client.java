@@ -1,4 +1,4 @@
-package client;
+package io.github.halfo;
 
 import java.io.BufferedReader;
 import java.io.DataOutputStream;

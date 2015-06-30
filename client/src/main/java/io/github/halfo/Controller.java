@@ -1,4 +1,4 @@
-package client;
+package io.github.halfo;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;

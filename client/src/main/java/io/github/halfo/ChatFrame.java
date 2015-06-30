@@ -1,4 +1,4 @@
-package client;
+package io.github.halfo;
 
 import java.awt.event.ActionListener;
 import javax.swing.*;
