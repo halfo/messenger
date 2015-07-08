@@ -3,8 +3,6 @@ package io.github.halfo;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 class Controller {
     private Client client;
@@ -23,7 +21,7 @@ class Controller {
     }
 
     private void listenToServer() {
-        Runnable r = () -> {
+        Runnable runnableTask = () -> {
             try {
                 while(true) {
                     String message = client.readMessage();
@@ -37,7 +35,7 @@ class Controller {
             }
         };
 
-        new Thread(r).start();
+        new Thread(runnableTask).start();
     }
 
     class LoginButtonListener implements ActionListener {
