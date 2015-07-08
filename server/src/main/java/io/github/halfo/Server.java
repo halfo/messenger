@@ -33,19 +33,19 @@ class Server {
     private void run() throws IOException {
         while (true) {
             Socket socket = serverSocket.accept();
-            BufferedReader reader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
-            DataOutputStream userNotifier = new DataOutputStream(socket.getOutputStream());
+            BufferedReader userDataReader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+            DataOutputStream responseToUser = new DataOutputStream(socket.getOutputStream());
 
-            String userData = reader.readLine();
+            String userData = userDataReader.readLine();
             String username = getUsername(userData);
             String password = getPassword(userData);
 
             if (validator.match(username, password) &&
                     !socketList.isUserOnline(username)) {
-                userNotifier.writeBytes("success\n");
+                responseToUser.writeBytes("success\n");
                 assignSession(username, socket);
             } else {
-                userNotifier.writeBytes("failed\n");
+                responseToUser.writeBytes("failed\n");
             }
         }
     }

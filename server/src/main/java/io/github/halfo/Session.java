@@ -9,7 +9,7 @@ import java.util.Set;
 
 class Session extends Thread {
     private String sender;
-    private BufferedReader reader;
+    private BufferedReader userMessageReader;
     private SocketList socketList;
     private Killer killer;
 
@@ -19,7 +19,7 @@ class Session extends Thread {
 
         try {
             Socket socket = socketList.getSocket(sender);
-            reader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+            userMessageReader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
         } catch (IOException e) {
             killThis();
         }
@@ -29,7 +29,7 @@ class Session extends Thread {
     public void run() {
         while (true) {
             try {
-                String encodedMessage = reader.readLine();
+                String encodedMessage = userMessageReader.readLine();
                 String receiver = getReceiver(encodedMessage);
                 String message  = getOriginalMessage(encodedMessage);
 
@@ -42,8 +42,8 @@ class Session extends Thread {
 
     private void sendMessage(Socket receiverSocket, String message) {
         try {
-            DataOutputStream writer = new DataOutputStream(receiverSocket.getOutputStream());
-            writer.writeBytes(message + "\n");
+            DataOutputStream messageWriter = new DataOutputStream(receiverSocket.getOutputStream());
+            messageWriter.writeBytes(message + "\n");
         } catch (IOException e) {
             killThis();
         }
