@@ -21,13 +21,13 @@ class Server {
     }
 
     // format = "username:password"
-    private String getUsername(String message) {
-        return message.substring(0, message.indexOf(":"));
+    private String getUsername(String userData) {
+        return userData.substring(0, userData.indexOf(":"));
     }
 
     // format = "username:password"
-    private String getPassword(String message){
-        return message.substring(message.indexOf(":") + 1, message.length());
+    private String getPassword(String userData) {
+        return userData.substring(userData.indexOf(":") + 1, userData.length());
     }
 
     private void run() throws IOException {
@@ -36,9 +36,9 @@ class Server {
             BufferedReader reader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
             DataOutputStream userNotifier = new DataOutputStream(socket.getOutputStream());
 
-            String encodedMessage = reader.readLine();
-            String username = getUsername(encodedMessage);
-            String password = getPassword(encodedMessage);
+            String userData = reader.readLine();
+            String username = getUsername(userData);
+            String password = getPassword(userData);
 
             if (validator.match(username, password) &&
                     !socketList.isUserOnline(username)) {
